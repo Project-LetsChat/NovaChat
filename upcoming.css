@@ -1,0 +1,31 @@
+
+body {
+    font-family: Arial, sans-serif;
+    
+  }
+  
+  header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  #features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .feature-card {
+    border: 1px solid #007BFF;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .feature-card h2 {
+    color: #007BFF;
+  }
+  

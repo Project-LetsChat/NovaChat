@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials</title>
+    <script src="cookie.js"></script>
+    <script src="ip_address.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="LetsChat_page.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="LetsChat_room.js"></script>
+    <link rel="stylesheet" href="LetsChat.css">
+    <script src="LetsChat.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel = "icon" href =  
+"https://cdn.jim-nielsen.com/ios/512/spike-email-messenger-chat-2019-05-01.png" 
+        type = "image/x-icon">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="settings.js"></script>
+        <link rel="stylesheet" href="tutorials.css">
+        <script src="tutorials.js"></script>
+        <script src="sjcl.js"></script>
+</head>
+<body>
+
+    <!--
+Navigation bar code here
+-->
+<nav class="navbar-inverse my_nav_bar">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar">
+  
+			</span>
+			<span class="icon-bar">
+				
+			</span>
+			<span class="icon-bar">
+				
+			</span>
+			
+		</button>
+		<a class="navbar-brand" href="LetsChat_room.html">
+			LetsChat
+		</a>
+		<!--Menu-->
+		<!--List of Menus
+		School name
+  
+  Campus life
+  
+  Achievements
+  
+  What’s New
+  
+  Contact us
+  -->
+	</div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+			<li><a href="extra.html" id="extra_services">External Services</a></li>
+			<li><a href="upcoming.html">Upcoming Features</a></li>
+			<li><a href="tutorials.html">Tutorials</a></li>
+			<li><a href="changelog.html">Changelog</a></li>
+		</ul>
+	</div>
+  </nav>
+
+    <h1>This is a page for Tutorials related to LetsChat</h1>
+
+    <h2>LetsChat Basics</h2>
+    <h3>The video below covers logging in, creating a room and then making a post.</h3>
+    <div class="video-player">
+      <video id="video" src="letschat_basics.mp4" controls></video>
+      <div id="controls" class="controls">
+        <button id="playBtn" class="control-btn">Play</button>
+        <button id="pauseBtn" class="control-btn">Pause</button>
+        <button id="stopBtn" class="control-btn">Stop</button>
+        <input id="seekBar" type="range" min="0" step="0.1">
+        <span id="currentTime" class="time">0:00</span> /
+        <span id="duration" class="time">0:00</span>
+        <button id="muteBtn" class="control-btn">Mute</button>
+        <input id="volumeBar" type="range" min="0" max="1" step="0.1">
+      </div>
+    </div>
+    
+    
+
+</body>
+</html>

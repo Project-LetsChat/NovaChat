@@ -1,0 +1,34 @@
+
+.video-player {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    
+    
+  }
+  
+  .controls {
+    margin-top: 10px;
+  }
+  
+  .control-btn {
+    margin-right: 5px;
+  }
+  
+  .time {
+    margin-right: 5px;
+  }
+  
+  input[type="range"] {
+    width: 150px;
+    margin: 0 5px;
+  }
+  
+  #seekBar {
+    flex: 1;
+  }
+  
+  #volumeBar {
+    width: 80px;
+  }
+  

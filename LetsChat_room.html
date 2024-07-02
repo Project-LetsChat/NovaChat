@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+	<title>NeoChat Room</title>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Yeon+Sung&amp;display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="icon" href="https://cdn.jim-nielsen.com/ios/512/spike-email-messenger-chat-2019-05-01.png" type="image/x-icon">
+<script src="sjcl.js"></script>
+<link rel="stylesheet" type="text/css" href="LetsChat.css">
+<script src="cookie.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oi&amp;display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+<script src="settings.js"></script>
+</head>
+<body>
+	
+	<!--
+Navigation bar code here
+-->
+<nav class="navbar-inverse my_nav_bar">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar">
+  
+			</span>
+			<span class="icon-bar">
+				
+			</span>
+			<span class="icon-bar">
+				
+			</span>
+			
+		</button>
+		<a class="navbar-brand" href="LetsChat_room.html">
+			NeoChat
+		</a>
+		<!--Menu-->
+		<!--List of Menus
+		School name
+  
+  Campus life
+  
+  Achievements
+  
+  What’s New
+  
+  Contact us
+  -->
+	</div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+			<li><a href="upcoming.html">Upcoming Features</a></li>
+			<li><a href="changelog.html">Changelog</a></li>
+			<li><a href="#"></a></li>
+			<li><a href=""></a></li>
+		</ul>
+	</div>
+  </nav>
+
+<div class="container">
+<button id="logout" onclick="logout()" class="glyphicon glyphicon-log-out btn btn-danger">Logout</button>
+	<center>
+		<h1 class="header">	
+			NeoChat	
+			<sup>
+				<img src="m2.png">
+			</sup>
+		</h1>
+		<h3 id="user_name" class="color_white"></h3>
+		<div class="form-group input_div_room_page">
+			<label>#Add Room:</label>
+<input type="text" id="room_name" class="form-control" placeholder="#ROOMNAME">
+
+		</div>
+		<button class="btn btn-success" onclick="addRoom()">#Add Room</button>
+		<h3 class="color_white">#TRENDINGROOMS</h3>
+	<div id="output"></div>
+	</center>
+</div>
+
+<!--<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="LetsBotBETA"
+  agent-id="a675261e-35c6-461a-b128-f5901ec8924d"
+  language-code="en"
+></df-messenger>-->
+
+<script src="LetsChat_room.js"></script>
+<script src="LetsChat.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
