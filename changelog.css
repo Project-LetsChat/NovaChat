@@ -1,13 +1,12 @@
-
 body {
   font-family: Arial, sans-serif;
-  background-color: #303030;
-  color: #fff;
+  background-color: #1e1e1e; /* Dark background */
+  color: #cfcfcf; /* Light text color */
 }
 
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: #333; /* Darker header background */
+  color: #fff; /* Light text color */
   padding: 10px 0;
   text-align: center;
 }
@@ -19,14 +18,36 @@ header {
 }
 
 .update-card {
-  border: 1px solid #ccc;
+  border: 1px solid #555; /* Border color to match dark theme */
   border-radius: 10px;
   margin: 20px;
   padding: 20px;
   width: 80%;
-  background-color: #808080;
+  background-color: #2a2a2a; /* Dark card background */
+  color: #cfcfcf; /* Light text color inside cards */
 }
 
 .update-card h2 {
-  color: #007BFF;
+  color: #1e90ff; /* Bright blue color for headings */
+}
+
+a {
+  color: #1e90ff; /* Link color */
+}
+
+a:hover {
+  color: #63b8ff; /* Hover color for links */
+}
+
+.navbar-inverse {
+  background-color: #2a2a2a; /* Dark navbar background */
+  border-color: #1e1e1e; /* Dark navbar border */
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #cfcfcf; /* Light text color for navbar links */
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #fff; /* Lighter hover text color for navbar links */
 }
