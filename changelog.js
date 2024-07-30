@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Array of updates
   const updates = [
-    { title: 'Page Replacement: Whats New', description: 'The Whats New page has been replaced with the upcoming page.' },
-    { title: 'New Sub-Section: Minor Improvements', description: 'A sub-page in the new Changelog page which has a full list of minor improvements.' },
+    { title: 'New Page: About', description: 'A new about page has been added.' },
+    
   ];
 
   // Get the updates container
