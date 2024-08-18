@@ -50,14 +50,17 @@ Navigation bar code here
 	</div>
   </nav>
   
+  
+  
 
 
     <div class="editor-container">
-        <button onclick="formatText('undo')">Undo</button>
-<button onclick="formatText('redo')">Redo</button>
+        
+        
 
         
         <div class="toolbar">
+            
             
             <button onclick="formatText('bold')"><b>B</b></button>
             <button onclick="formatText('italic')"><i>I</i></button>
@@ -72,9 +75,55 @@ Navigation bar code here
             <button onclick="formatText('createLink')">Link</button>
             <button onclick="formatText('unlink')">Unlink</button>
             <button onclick="formatText('removeFormat')">Clear</button>
+            <button onclick="formatText('undo')">Undo</button>
+<button onclick="formatText('redo')">Redo</button>
+<select onchange="formatText('fontName', this.value)">
+    <option value="Arial">Arial</option>
+    <option value="Courier New">Courier New</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Verdana">Verdana</option>
+</select>
+
+<select onchange="formatText('fontSize', this.value)">
+    <option value="1">Small</option>
+    <option value="3">Normal</option>
+    <option value="5">Large</option>
+</select>
+<input type="color" onchange="formatText('foreColor', this.value)" title="Text Color">
+<input type="color" onchange="formatText('hiliteColor', this.value)" title="Background Color">
+<button onclick="insertImage()">Insert Image</button>
+<button onclick="saveContent()">Save</button>
+<button onclick="loadContent()">Load</button>
+<button onclick="toggleFullscreen()">Fullscreen</button>
+<button onclick="toggleDarkMode()">Dark Mode</button>
+<button onclick="printContent()">Print</button>
+<button onclick="exportToHTML()">Export to HTML</button>
+
+
+
+
+
+
+
+
+
+
+
         </div>
+        
+        
         <div id="editor" contenteditable="true" class="editor"></div>
+        <div id="wordCount">Words: 0</div>
+
+        
+        
     </div>
+    
+    
+
+    
     <script src="text.js"></script>
+    
 </body>
 </html>

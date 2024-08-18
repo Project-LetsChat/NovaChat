@@ -47,3 +47,18 @@ body {
     font-size: 16px;
     line-height: 1.6;
 }
+
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.editor-container.dark-mode {
+    background-color: #444;
+    color: #fff;
+}
+
+.toolbar.dark-mode {
+    background-color: #555;
+}
+
