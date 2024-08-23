@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtime Filter</title>
+    <link rel="stylesheet" href="filter.css">
+    <script src="filter.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+</head>
+<body background="background.jpg">
+
+    <!--
+Navigation bar code here
+-->
+<nav class="navbar-inverse my_nav_bar">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar">
+  
+			</span>
+			<span class="icon-bar">
+				
+			</span>
+			<span class="icon-bar">
+				
+			</span>
+			
+		</button>
+		<a class="navbar-brand" href="https://project-letschat.github.io/NeoChat/LetsChat_room.html">
+			NeoChat
+		</a>
+		<!--Menu-->
+		<!--List of Menus
+		
+  -->
+	</div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+			<li><a href="https://project-letschat.github.io/NeoChat/upcoming.html">Upcoming Features</a></li>
+			<li><a href="https://project-letschat.github.io/NeoChat/changelog.html">Changelog</a></li>
+			<li><a href="https://project-letschat.github.io/NeoChat/about.html">About</a></li>
+			<li><a href="https://github.com/Project-LetsChat/LetsChat.git/">LetsChat</a></li>
+            <li><a href="https://project-letschat.github.io/NeoChat/text.html">NText-Editor</a></li>
+            <li><a href="https://project-letschat.github.io/NeoChat/filter.html">New Realtime Filters</a></li>
+		</ul>
+	</div>
+  </nav>
+  
+    <center>
+        <h3>Realtime Filter</h3>
+        <button onclick="save()">Save</button>
+        <br>
+        <canvas id="myCanvas"></canvas>
+    </center>
+</body>
+</html>
