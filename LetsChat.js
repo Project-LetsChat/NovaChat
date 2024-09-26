@@ -3,7 +3,7 @@ function addUser() {
     if (user_name.trim() !== "") { // Check if the user name is not empty
         localStorage.setItem("user_name", user_name);
         window.location = "LetsChat_room.html";
-        alert("Welcome to NeoChat!")
+        alert("Welcome to NovaChat!")
     } else {
         alert("Please enter a user name.");
     }
