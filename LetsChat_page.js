@@ -17,11 +17,15 @@ room_name = localStorage.getItem("room_name");
 // Function to send message
 function send() {
   msg = document.getElementById("msg").value;
+  if (msg.trim() !=="") {
   firebase.database().ref(room_name).push({
     name: user_name,
     message: msg,
     like: 0
   });
+} else {
+  alert(("Please enter some text!"));
+}
 
   document.getElementById("msg").value = "";
 }
