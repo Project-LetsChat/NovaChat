@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Array of updates
   const updates = [
-    { title: 'New Page: About', description: 'A new about page has been added.' },
+    { title: 'Redesign', description: 'NovaChat has gotten redesigned in order to give it a more modern look.' },
+    { title: 'Rebranding', description: 'The site has been renamed to NovaChat' },
     
   ];
 
