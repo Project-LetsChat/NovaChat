@@ -1,0 +1,264 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    background-color: #1C1C1C;
+    font-family: 'Ubuntu', sans-serif;
+    background-image: linear-gradient(to right top, #001f3f, #004080, #0059b3, #0073e6, #3385ff);
+  }
+  
+  .header {
+    color: white;
+    font-family: 'Yeon Sung';
+    font-size: 45px;
+    letter-spacing: 10px;
+    margin-top: 80px;
+  }
+  
+  .header img {
+    width: 80px;
+    margin-left: -15px;
+  }
+  
+  .login_div {
+    background: rgba(40, 40, 40, 0.9);
+    float: none;
+    border-radius: 15px;
+  }
+  
+  .logo {
+    width: 80px;
+    margin-top: 30px;
+    border-radius: 40px;
+  }
+  
+  #login_button {
+    width: 80%;
+    border-radius: 15px;
+  }
+  
+  .room_name {
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+  }
+  
+  #logout {
+    font-size: 20px;
+    float: right;
+    color: white;
+  }
+  
+  .main {
+    background-color: #2F2F2F;
+    width: 400px;
+    height: 400px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.6);
+  }
+  
+  .sign {
+    padding-top: 40px;
+    color: #FFD700;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+  }
+  
+  .un {
+    width: 76%;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(50, 50, 50, 0.2);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  form.form1 {
+    padding-top: 40px;
+  }
+  
+  .pass {
+    width: 76%;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(50, 50, 50, 0.2);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .un:focus, .pass:focus {
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .submit {
+    cursor: pointer;
+    border-radius: 5em;
+    color: white;
+    background: linear-gradient(to right, #8B008B, #FF69B4);
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 35%;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.4);
+  }
+  
+  .forgot {
+    text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.3);
+    color: #E1BEE7;
+    padding-top: 15px;
+  }
+  
+  a {
+    text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.3);
+    color: #E1BEE7;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 600px) {
+    .main {
+      border-radius: 0px;
+    }
+  }
+  
+  #output {
+    background: #2F2F2F;
+    border-radius: 10px;
+    border-top: 10px solid #aa4465;
+    padding: 10px;
+    width: 80%;
+    background: rgba(40, 40, 40, 0.9);
+    border-radius: 15px;
+    float: none;
+    text-align: left;
+    color: white;
+  }
+  
+  .input_div_room_page {
+    width: 80%;
+  }
+  
+  .input_div label {
+    color: white;
+    font-size: 20px;
+  }
+  
+  .input_div_message_page {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: rgba(40, 40, 40, 0.9);
+  }
+  
+  .input_div_message_page label {
+    color: white;
+  }
+  
+  .input_div_message_page #msg {
+    width: 80%;
+    color: white;
+  }
+  
+  .input_div_message_page button {
+    margin-top: 15px;
+    width: 50%;
+  }
+  
+  .color_white {
+    color: white;
+  }
+  
+  .user_tick {
+    width: 20px;
+  }
+  
+  .message_h4 {
+    padding-left: 5px;
+    color: lightgrey;
+  }
+  
+  #video {
+    width: 100%;
+    height: 500px;
+    border: none;
+  }
+  
+  .travel_mainDIV {
+    border: 1px solid grey;
+  }
+  
+  .travel_mainDIV img {
+    width: 100%;
+  }
+  
+  .travel_mainDIV h5, .travel_mainDIV p {
+    margin: 20px;
+    color: white;
+  }
+  
+  .movie_head {
+    font-size: 20px;
+    padding: 6px 22px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: white;
+  }
+  
+  .movie_head i {
+    float: right;
+  }
+  
+  .achievement_text span {
+    color: orange;
+  }
+  
+  .whatsnew {
+    margin-bottom: 20px;
+  }
+  
+  #contact iframe {
+    width: 100%;
+  }
+  
+  .line {
+    height: 6px;
+    background-color: white;
+    width: 70px;
+    margin: 8px auto;
+  }
+  
+  .bottom_left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
