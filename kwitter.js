@@ -9,5 +9,5 @@ function addUser() {
     }
 }
 
-window.LetsChat = true;
+window.location = "kwitter_room.html";
 
