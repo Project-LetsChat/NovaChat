@@ -16,16 +16,22 @@ room_name = localStorage.getItem("room_name");
 
 // Function to send message
 function send() {
-  msg = document.getElementById("msg").value;
-  if (msg.trim() !=="") {
-  firebase.database().ref(room_name).push({
-    name: user_name,
+  const msg = document.getElementById("msg").value.trim();
+  if (!msg) {
+    alert("Please enter some text!");
+    return;
+  }
+
+  const messagesRef = firebase.database().ref(room_name);
+  messagesRef.push({
+    name: localStorage.getItem("user_name"),
     message: msg,
-    like: 0
+    like: 0,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  }).catch((error) => {
+    console.error("Error sending message:", error);
+    alert("Error sending message. Check console for details.");
   });
-} else {
-  alert(("Please enter some text!"));
-}
 
   document.getElementById("msg").value = "";
 }
@@ -39,36 +45,32 @@ function sanitizeHTML(str) {
 
 // Function to get data and display messages
 function getData() {
-  firebase.database().ref("/" + room_name).on('value', function(snapshot) {
-    document.getElementById("output").innerHTML = "";
-    snapshot.forEach(function(childSnapshot) {
-      childKey = childSnapshot.key;
-      childData = childSnapshot.val();
-      if (childKey != "purpose") {
-        firebase_message_id = childKey;
-        message_data = childData;
-
-        console.log(firebase_message_id);
-        console.log(message_data);
-
-        // Sanitize user inputs
-        var name = sanitizeHTML(message_data['name']);
-        var message = sanitizeHTML(message_data['message']);
-        var like = sanitizeHTML(String(message_data['like']));
-
-        // Construct HTML tags with sanitized inputs
-        var name_with_tag = "<h4>" + name + "<img class='user_tick' src='tick.png'></h4>";
-        var message_with_tag = "<h4 class='message_h4'>" + message + "</h4>";
-        var like_button = "<button class='btn btn-warning' id=" + firebase_message_id + " value=" + like + " onclick='updateLike(this.id)'>";
-        var span_with_tag = "<span class='glyphicon glyphicon-thumbs-up'>Like: " + like + "</span></button><hr>";
-
-        // Combine the constructed tags into a row
-        var row = name_with_tag + message_with_tag + like_button + span_with_tag;
-        
-        // Append the row to the output
-        document.getElementById("output").innerHTML += row;
+  const messagesRef = firebase.database().ref(room_name);
+  messagesRef.on('value', (snapshot) => {
+    let html = "";
+    snapshot.forEach((childSnapshot) => {
+      const messageData = childSnapshot.val();
+      if (messageData.name && messageData.message) { // Add proper validation
+        html += `
+          <div class="message">
+            <h4>${sanitizeHTML(messageData.name)} 
+              <img class="user_tick" src="tick.png">
+            </h4>
+            <p class="message_h4">${sanitizeHTML(messageData.message)}</p>
+            <button class="btn btn-warning" 
+                    id="${childSnapshot.key}" 
+                    onclick="updateLike(this.id)"
+                    data-likes="${messageData.like || 0}">
+              <span class="glyphicon glyphicon-thumbs-up">
+                Likes: ${messageData.like || 0}
+              </span>
+            </button>
+            <hr>
+          </div>
+        `;
       }
     });
+    document.getElementById("output").innerHTML = html;
   });
 }
 
@@ -94,3 +96,8 @@ function logout() {
   localStorage.removeItem("room_name");
   window.location.replace("index.html");
 }
+
+// Add click event listener to send button
+document.getElementById("sendButton").addEventListener("click", function() {
+  send();
+});

@@ -151,16 +151,21 @@ html, body {
   }
   
   #output {
-    background: #2F2F2F;
-    border-radius: 10px;
-    border-top: 10px solid #aa4465;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-bottom: 100px;
+  }
+  
+  .message {
     padding: 10px;
-    width: 80%;
-    background: rgba(40, 40, 40, 0.9);
-    border-radius: 15px;
-    float: none;
-    text-align: left;
-    color: white;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+  
+  .message p {
+    margin: 5px 0 10px 25px;
+    color: #e0e0e0;
   }
   
   .input_div_room_page {
