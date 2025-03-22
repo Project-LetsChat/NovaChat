@@ -186,7 +186,11 @@ html, body {
   .input_div_message_page #msg {
     width: 80%;
     color: white;
-  }
+    background: rgba(50, 50, 50, 0.2); /* Add background color */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Add border */
+    border-radius: 20px; /* Match other inputs */
+    padding: 10px 20px; /* Add padding */
+}
   
   .input_div_message_page button {
     margin-top: 15px;
