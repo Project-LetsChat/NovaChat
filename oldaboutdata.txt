@@ -1,0 +1,13 @@
+<div class="container">
+        <header>
+            <h1>About NovaChat</h1>
+        </header>
+        <section>
+            <p>Welcome to NovaChat! NovaChat is a proof-of-concept social media platform built on top of the LetsChat framework.</p>
+            <p><strong>LetsChat</strong> is an innovative web framework that allows developers to create powerful social media platforms with ease. It is licensed under the <a href="https://www.mozilla.org/en-IN/MPL/2.0/" target="_blank">MPL-2.0</a> license.</p>
+            <p><strong>NovaChat</strong> serves as a demonstration of what can be achieved with LetsChat. It is licensed under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank">AGPLV3</a> license.</p>
+        </section>
+        <footer>
+            <p>&copy; 2024 NovaChat. All rights reserved.</p>
+        </footer>
+    </div>
