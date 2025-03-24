@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Array of updates
   const updates = [
-    { title: 'Redesign', description: 'NovaChat has gotten redesigned in order to give it a more modern look.' },
-    { title: 'Rebranding', description: 'The site has been renamed to NovaChat' },
+    { title: 'Redesign Phase 4', description: 'The final phase of the redesign is now out.' },
+    { title: 'Kwitter compatibility', description: 'The entire instance has been moved to the new Kwitter compatible directory/file structure.' },
     
   ];
 
