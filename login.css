@@ -118,3 +118,23 @@ body {
     font-size: 1.5em;
   }
 }
+
+/* GNU logo styling */
+.gnu {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.gnu p {
+  margin: 0; /* Remove default paragraph margins */
+}
+
+.gnu img {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  transition: transform 0.3s ease;
+}
+
+.gnu img:hover {
+  transform: scale(1.05) rotate(-5deg);
+}
