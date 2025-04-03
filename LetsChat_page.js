@@ -43,34 +43,49 @@ function sanitizeHTML(str) {
   return temp.innerHTML;
 }
 
+// Function to escape HTML attributes
+function escapeAttr(str) {
+  var temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+}
+
 // Function to get data and display messages
 function getData() {
-  const messagesRef = firebase.database().ref(room_name);
-  messagesRef.on('value', (snapshot) => {
-    let html = "";
-    snapshot.forEach((childSnapshot) => {
-      const messageData = childSnapshot.val();
-      if (messageData.name && messageData.message) { // Add proper validation
-        html += `
-          <div class="message">
-            <h4>${sanitizeHTML(messageData.name)} 
-              <img class="user_tick" src="tick.png">
-            </h4>
-            <p class="message_h4">${sanitizeHTML(messageData.message)}</p>
-            <button class="btn btn-warning" 
-                    id="${childSnapshot.key}" 
-                    onclick="updateLike(this.id)"
-                    data-likes="${messageData.like || 0}">
-              <span class="glyphicon glyphicon-thumbs-up">
-                Likes: ${messageData.like || 0}
-              </span>
-            </button>
-            <hr>
-          </div>
-        `;
+  firebase.database().ref("/" + room_name).on('value', function(snapshot) {
+    document.getElementById("output").innerHTML = "";
+    snapshot.forEach(function(childSnapshot) {
+      childKey = childSnapshot.key;
+      childData = childSnapshot.val();
+      if (childKey != "purpose") {
+        firebase_message_id = childKey;
+        message_data = childData;
+
+        console.log(firebase_message_id);
+        console.log(message_data);
+
+        // Sanitize user inputs
+        var name = sanitizeHTML(message_data['name']);
+        var message = sanitizeHTML(message_data['message']);
+        var like = sanitizeHTML(String(message_data['like']));
+
+        // Escape for attribute context
+        var escapedFirebaseMessageId = escapeAttr(firebase_message_id);
+        var escapedLike = escapeAttr(like);
+
+        // Construct HTML tags with sanitized and escaped inputs
+        var name_with_tag = "<h4>" + name + "<img class='user_tick' src='tick.png'></h4>";
+        var message_with_tag = "<h4 class='message_h4'>" + message + "</h4>";
+        var like_button = "<button class='btn btn-warning' id='" + escapedFirebaseMessageId + "' value='" + escapedLike + "' onclick='updateLike(this.id)'>";
+        var span_with_tag = "<span class='glyphicon glyphicon-thumbs-up'>Like: " + like + "</span></button><hr>";
+
+        // Combine the constructed tags into a row
+        var row = name_with_tag + message_with_tag + like_button + span_with_tag;
+        
+        // Append the row to the output
+        document.getElementById("output").innerHTML += row;
       }
     });
-    document.getElementById("output").innerHTML = html;
   });
 }
 
