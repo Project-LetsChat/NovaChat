@@ -62,6 +62,15 @@ function sanitizeHTML(str) {
   return temp.innerHTML;
 }
 
+// Add this NEW function at the top with sanitizeHTML
+function escapeAttr(str) {
+  const temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML
+    .replace(/'/g, '&#39;')
+    .replace(/"/g, '&quot;');
+}
+
 // Function to get data and display messages
 function getData() {
   const messagesRef = firebase.database().ref(room_name);
@@ -69,7 +78,11 @@ function getData() {
     let html = "";
     snapshot.forEach((childSnapshot) => {
       const messageData = childSnapshot.val();
-      if (messageData.name && messageData.message) { // Add proper validation
+      if (messageData.name && messageData.message) {
+        // Escape all dynamic attributes
+        const safeKey = escapeAttr(childSnapshot.key);
+        const safeLikes = escapeAttr(String(messageData.like || 0));
+
         html += `
           <div class="message">
             <h4>${sanitizeHTML(messageData.name)} 
@@ -77,11 +90,11 @@ function getData() {
             </h4>
             <p class="message_h4">${sanitizeHTML(messageData.message)}</p>
             <button class="btn btn-warning" 
-                    id="${childSnapshot.key}" 
+                    id="${safeKey}" 
                     onclick="updateLike(this.id)"
-                    data-likes="${messageData.like || 0}">
+                    data-likes="${safeLikes}">
               <span class="glyphicon glyphicon-thumbs-up">
-                Likes: ${messageData.like || 0}
+                Likes: ${sanitizeHTML(String(messageData.like || 0))}
               </span>
             </button>
             <hr>
