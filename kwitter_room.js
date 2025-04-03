@@ -26,16 +26,28 @@ if (user_name) {
 }
 
 function addRoom() {
-    let room_name = document.getElementById("room_name").value;
-    if (room_name.trim() !== "") {
-        firebase.database().ref("/").child(room_name).update({
-            purpose: "adding_room_name"
-        });
+    let room_name = document.getElementById("room_name").value.trim();
+    if (!room_name) {
+      alert("Please enter a room name.");
+      return;
+    }
+  
+    // Create initial room structure
+    const roomData = {
+      purpose: "chat_room",
+      created_at: firebase.database.ServerValue.TIMESTAMP,
+      created_by: localStorage.getItem("user_name")
+    };
+  
+    firebase.database().ref(room_name).set(roomData)
+      .then(() => {
         localStorage.setItem("room_name", room_name);
         window.location = "kwitter_page.html";
-    } else {
-        alert("Please enter a room name.");
-    }
+      })
+      .catch((error) => {
+        console.error("Error creating room:", error);
+        alert("Error creating room: " + error.message);
+      });
 }
 
 function getData() {

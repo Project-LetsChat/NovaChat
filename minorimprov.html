@@ -71,9 +71,9 @@ Navigation bar code here
 
   <p><a href="https://project-letschat.github.io/NovaChat/changelog.html">Return to the Changelog</a></p>
   <h1>Full List of Improvements</h1>
-  <h2>Upgraded to support a more modern LetsChat base, though still retaining the old directory structure instead of updating to the new one introduced in 6.1.</h2>
-  <h2>The project has been rebranded to NovaChat in order to avoid confusion with the NeoChat project from KDE.</h2>
-  <h2>NovaChat's theme that carried over from LetsChat Social has now gotten a new Coat of Paint, it features a more darker gradient and modern gradient.</h2>
+  <h2>Moved to the Kwitter directory/file structure introduced in LetsChat upstream with version 6.1, when 6.1 released NovaChat decided to not immediately switch to the new structure but instead maintain it and backport patches from the new structure into the old one. Now that NovaChat has finally moved to this new structure, it no longer needs to spend extra effort in backporting changes but can instantly pull them into the Nightly branch with no extra work.</h2>
+  <h2>Phase 4 of the redesign is out, it is the final phase of the redesign and is more of an improvement/enhhancement to what already came with the previous phases.</h2>
+  <h2>All legacy pages from LetsChat Social have recieved their final updates, they won't be recieving any new changes after this and since their dependencies are on the files from the old directory structure they have been linked to the new Kwitter-compatible files so that they can recieve security updates from the rest of NovaChat. Though they aren't guaranteed any security updates when it comes to security holes that specifically affect them since they are now EOL. They won't be recieving the Phase 4 redesign and will be stuck on phase 3 indefinetely, all files from the old directory structure now instead of depending on each other depend on the Kwitter compatible files and all the discontinued pages now lead to the pages in modern day NovaChat as they have the updated Navigation menu with the updated links.</h2>
 
   <!--<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
@@ -82,7 +82,7 @@ Navigation bar code here
   agent-id="a675261e-35c6-461a-b128-f5901ec8924d"
   language-code="en"
 ></df-messenger>-->
-<h6 class="bottom_left">Built using LetsChat</h6>
+<h6 class="bottom_left">Powered by LetsChat</h6>
     
 </body>
 </html>

@@ -16,16 +16,22 @@ room_name = localStorage.getItem("room_name");
 
 // Function to send message
 function send() {
-  msg = document.getElementById("msg").value;
-  if (msg.trim() !=="") {
-  firebase.database().ref(room_name).push({
-    name: user_name,
+  const msg = document.getElementById("msg").value.trim();
+  if (!msg) {
+    alert("Please enter some text!");
+    return;
+  }
+
+  const messagesRef = firebase.database().ref(room_name);
+  messagesRef.push({
+    name: localStorage.getItem("user_name"),
     message: msg,
-    like: 0
+    like: 0,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  }).catch((error) => {
+    console.error("Error sending message:", error);
+    alert("Error sending message. Check console for details.");
   });
-} else {
-  alert(("Please enter some text!"));
-}
 
   document.getElementById("msg").value = "";
 }
@@ -35,6 +41,13 @@ function sanitizeHTML(str) {
   var temp = document.createElement('div');
   temp.textContent = str;
   return temp.innerHTML;
+}
+
+// Function to escape HTML attributes
+function escapeAttr(str) {
+  var temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
 }
 
 // Function to get data and display messages
@@ -56,10 +69,14 @@ function getData() {
         var message = sanitizeHTML(message_data['message']);
         var like = sanitizeHTML(String(message_data['like']));
 
-        // Construct HTML tags with sanitized inputs
+        // Escape for attribute context
+        var escapedFirebaseMessageId = escapeAttr(firebase_message_id);
+        var escapedLike = escapeAttr(like);
+
+        // Construct HTML tags with sanitized and escaped inputs
         var name_with_tag = "<h4>" + name + "<img class='user_tick' src='tick.png'></h4>";
         var message_with_tag = "<h4 class='message_h4'>" + message + "</h4>";
-        var like_button = "<button class='btn btn-warning' id=" + firebase_message_id + " value=" + like + " onclick='updateLike(this.id)'>";
+        var like_button = "<button class='btn btn-warning' id='" + escapedFirebaseMessageId + "' value='" + escapedLike + "' onclick='updateLike(this.id)'>";
         var span_with_tag = "<span class='glyphicon glyphicon-thumbs-up'>Like: " + like + "</span></button><hr>";
 
         // Combine the constructed tags into a row
@@ -94,3 +111,8 @@ function logout() {
   localStorage.removeItem("room_name");
   window.location.replace("index.html");
 }
+
+// Add click event listener to send button
+document.getElementById("sendButton").addEventListener("click", function() {
+  send();
+});
