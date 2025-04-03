@@ -25,9 +25,9 @@
         type = "image/x-icon">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
-        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+<!-- In all HTML files, replace Firebase includes with: -->
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database-compat.js"></script>
 <script src="settings.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="sjcl.js"></script>
@@ -38,38 +38,31 @@
 </head>
 <body>
 
-  
-    
-  
-  
-  
-  
-    <div class="main">
-      
-      <center>
-        <p><a href="https://www.gnu.org/" title=
-          "The GNU Project"><img alt="GNU" src="gnu-head-sm.png" width=
-          "129" height="122" /></a></p>
-      </center>
-      
-        <p class="sign" align="center">Login Now!</p>
-        
-        
-        <form class="form1">
-          
-          <input class="un " type="text" align="center" id="user_name" placeholder="Username">
-          <!--<input class="pass" type="password" align="center"  placeholder="Password">-->
-          <a class="submit" id="login_button" align="center" onclick="addUser()">Login</a>
-          <!--<p class="forgot" align="center"><a href="#">Forgot Password?</p>-->
-            
-        
+  <div class="login-container">
+    <div class="container">
+        <div class="login-box">
+            <form class="form" onsubmit="event.preventDefault(); addUser();">
+                <div class="logo">
+                    <img src="heckert_gnu.png" alt="GNU Logo" class="gnu-logo">
+                </div>
+                <span class="header">Welcome to NovaChat</span>
+                <input type="text" 
+                       placeholder="Username" 
+                       class="input" 
+                       id="user_name"
+                       required />
+                <button type="submit" class="button sign-in">Login</button>
+                
+                <!--<p class="footer">
+                    New here? 
+                    <a href="#" class="link">Create account</a>
+                </p>-->
+            </form>
         </div>
-             
     </div>
+</div>
 
-
-    
-  
+<!-- Keep existing scripts and footer -->
 
         <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
         <h6 class="bottom_left">Built using LetsChat</h6>
