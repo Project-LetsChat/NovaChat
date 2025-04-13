@@ -1,91 +1,93 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyDCKd9OXejZ-0PK729riphOd6Z1KgrzjCo",
-    authDomain: "letschattestbranch.firebaseapp.com",
-    databaseURL: "https://letschattestbranch-default-rtdb.firebaseio.com/",
-    projectId: "letschattestbranch",
-    storageBucket: "letschattestbranch.appspot.com",
-    messagingSenderId: "1048525961569",
-    appId: "1:1048525961569:web:83583f3ab3a726da266d20"
-};
+const client = new Appwrite.Client();
+client
+    .setEndpoint('https://cloud.appwrite.io/v1')
+    .setProject('6769c3050016c57dccbf');
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-//firebase.getAnalytics(app); // Analytics will be disabled for the foreseeable future.
-//const analytics = getAnalytics(app);
+const databases = new Appwrite.Databases(client);
+const realtime = new Appwrite.Realtime(client);
+const account = new Appwrite.Account(client);
 
-// ADD YOUR FIREBASE LINKS HERE
-let user_name = localStorage.getItem("user_name");
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+    const user_name = localStorage.getItem("user_name");
+    if (!user_name) window.location = "index.html";
+    document.getElementById("user_name").textContent = `Welcome ${user_name}!`;
+    
+    getData();
+});
 
-if (user_name) {
-    // Sanitize the user name before injecting it into the HTML
-    document.getElementById("user_name").textContent = "Welcome " + user_name + "!";
-} else {
-    // Redirect to login page if user_name is not found
-    window.location = "index.html";
-}
-
-function addRoom() {
-    let room_name = document.getElementById("room_name").value.trim();
+async function addRoom() {
+    const room_name = document.getElementById("room_name").value.trim();
     if (!room_name) {
-      alert("Please enter a room name.");
-      return;
+        alert("Please enter a room name.");
+        return;
     }
-  
-    // Create initial room structure
-    const roomData = {
-      purpose: "chat_room",
-      created_at: firebase.database.ServerValue.TIMESTAMP,
-      created_by: localStorage.getItem("user_name")
-    };
-  
-    firebase.database().ref(room_name).set(roomData)
-      .then(() => {
+
+    try {
+        await databases.createDocument(
+            'main', // Your database ID
+            'rooms', // Your collection ID
+            Appwrite.ID.unique(),
+            {
+                name: room_name,
+                created_by: localStorage.getItem("user_name"),
+                created_at: new Date().toISOString()
+            }
+        );
+        
         localStorage.setItem("room_name", room_name);
         window.location = "kwitter_page.html";
-      })
-      .catch((error) => {
+    } catch (error) {
         console.error("Error creating room:", error);
         alert("Error creating room: " + error.message);
-      });
+    }
 }
 
 function getData() {
-    firebase.database().ref("/").on('value', function(snapshot) {
-        document.getElementById("output").innerHTML = "";
-        snapshot.forEach(function(childSnapshot) {
-            let childKey = childSnapshot.key;
-            let Room_names = childKey;
-            // Start code
-            console.log("Room name - " + Room_names);
-
-            // Create room element dynamically and set attributes safely
-            let roomElement = document.createElement('div');
-            roomElement.className = 'room_name';
-            roomElement.id = Room_names;
-            roomElement.onclick = function() { redirectToRoomName(this.id); };
-            roomElement.textContent = "#" + Room_names;
-
-            // Create a horizontal rule element
-            let hr = document.createElement('hr');
-
-            // Append room element and horizontal rule to output
-            document.getElementById("output").appendChild(roomElement);
-            document.getElementById("output").appendChild(hr);
-            // End code
-        });
+    // Real-time subscription
+    const unsubscribe = realtime.subscribe('databases.main.collections.rooms.documents', response => {
+        if (response.events.includes('databases.*.collections.rooms.documents.*.create')) {
+            addRoomToUI(response.payload.name);
+        }
     });
+
+    // Initial load
+    databases.listDocuments('main', 'rooms')
+        .then(response => {
+            response.documents.forEach(room => addRoomToUI(room.name));
+        })
+        .catch(error => console.error("Error loading rooms:", error));
 }
-getData();
+
+function addRoomToUI(roomName) {
+    const output = document.getElementById("output");
+    if (!document.getElementById(roomName)) {
+        const roomElement = document.createElement('div');
+        roomElement.className = 'room_name';
+        roomElement.id = roomName;
+        roomElement.onclick = () => redirectToRoomName(roomName);
+        roomElement.textContent = `#${roomName}`;
+        
+        const hr = document.createElement('hr');
+        output.appendChild(roomElement);
+        output.appendChild(hr);
+    }
+}
 
 function redirectToRoomName(name) {
-    console.log(name);
     localStorage.setItem("room_name", name);
     window.location = "kwitter_page.html";
 }
 
 function logout() {
-    localStorage.removeItem("user_name");
-    localStorage.removeItem("room_name");
-    window.location = "index.html";
+  account.deleteSession('current')
+      .then(() => {
+          localStorage.clear();
+          window.location.href = "index.html";
+      })
+      .catch(error => {
+          console.error("Logout error:", error);
+          localStorage.clear();
+          window.location.href = "index.html";
+      });
 }
