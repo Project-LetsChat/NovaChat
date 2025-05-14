@@ -25,3 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updatesContainer.appendChild(updateCard);
   }
 });
+
+// PWA
+if (!navigator.onLine) {
+  alert('You are offline. Some features may be limited.');
+  // Handle offline state
+}

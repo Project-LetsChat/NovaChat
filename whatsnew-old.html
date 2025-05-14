@@ -25,6 +25,11 @@
         <script src="settings.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="sjcl.js"></script>
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#8B008B">
+        
+        
 </head>
 <body>
 
@@ -97,6 +102,18 @@ Navigation bar code here
   agent-id="a675261e-35c6-461a-b128-f5901ec8924d"
   language-code="en"
 ></df-messenger>-->
+
+<!-- PWA -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registered:', reg))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+  </script>
+  
 
 </body>
 

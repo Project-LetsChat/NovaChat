@@ -6,3 +6,9 @@ client
 
 window.databases = new Appwrite.Databases(client);
 window.account = new Appwrite.Account(client);
+
+// PWA
+if (!navigator.onLine) {
+    alert('You are offline. Some features may be limited.');
+    // Handle offline state
+  }

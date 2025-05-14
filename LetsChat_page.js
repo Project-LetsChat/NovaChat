@@ -116,3 +116,9 @@ function logout() {
 document.getElementById("sendButton").addEventListener("click", function() {
   send();
 });
+
+// PWA
+if (!navigator.onLine) {
+  alert('You are offline. Some features may be limited.');
+  // Handle offline state
+}

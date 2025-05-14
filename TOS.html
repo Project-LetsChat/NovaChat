@@ -23,6 +23,11 @@
         <script src="settings.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="sjcl.js"></script>
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#8B008B">
+        
+        
 </head>
 <body>
     
@@ -56,5 +61,17 @@
         
         <h3>By using NovaChat, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions.</h3>
         <button type="button"><a href="https://project-letschat.github.io/NovaChat/index.html">Return to Login.</a></button>
+
+        <!-- PWA -->
+        <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+              .then(reg => console.log('SW registered:', reg))
+              .catch(err => console.log('SW registration failed:', err));
+          });
+        }
+        </script>
+        
 </body>
 </html>

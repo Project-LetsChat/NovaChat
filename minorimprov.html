@@ -29,6 +29,11 @@
         <link rel="stylesheet" href="tutorials.css">
         <script src="tutorials.js"></script>
         <script src="sjcl.js"></script>
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#8B008B">
+        
+        
 </head>
 <body>
 
@@ -84,6 +89,18 @@ Navigation bar code here
   language-code="en"
 ></df-messenger>-->
 <h6 class="bottom_left">Powered by LetsChat</h6>
+
+<!-- PWA -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+
     
 </body>
 </html>

@@ -5,3 +5,9 @@ client
 
 const databases = new Appwrite.Databases(client);
 const realtime = new Appwrite.Realtime(client);
+
+// PWA
+if (!navigator.onLine) {
+    alert('You are offline. Some features may be limited.');
+    // Handle offline state
+  }

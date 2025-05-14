@@ -8,3 +8,9 @@ function addUser() {
         alert("Please enter a user name.");
     }
 }
+
+// PWA
+if (!navigator.onLine) {
+    alert('You are offline. Some features may be limited.');
+    // Handle offline state
+  }

@@ -77,3 +77,9 @@ function logout() {
     localStorage.removeItem("room_name");
     window.location = "index.html";
 }
+
+// PWA
+if (!navigator.onLine) {
+    alert('You are offline. Some features may be limited.');
+    // Handle offline state
+  }

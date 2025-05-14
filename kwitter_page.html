@@ -26,6 +26,11 @@
 		<link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
 		<script src="sjcl.js"></script>
 		<script src="settings.js"></script>
+		<!-- PWA -->
+		<link rel="manifest" href="manifest.json">
+		<meta name="theme-color" content="#8B008B">
+		
+		
 </head>
 <body>
 
@@ -107,6 +112,18 @@ Navigation bar code here
 
 <script src="kwitter_page.js"></script>
 <h6 class="bottom_left">Powered by LetsChat</h6>
+
+<!-- PWA -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+
 
 </body>
 </html>

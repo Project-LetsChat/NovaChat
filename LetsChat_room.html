@@ -22,6 +22,11 @@
 <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
 <script src="settings.js"></script>
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8B008B">
+
+
 </head>
 <body>
 	
@@ -104,6 +109,18 @@ Navigation bar code here
 <script src="kwitter_room.js"></script>
 <script src="kwitter.js"></script>
 <h6 class="bottom_left">Built using LetsChat</h6>
+
+<!-- PWA -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+
 </body>
 </html>
 

@@ -31,6 +31,11 @@
   <!--https://teachablemachine.withgoogle.com/models/MKKXoCdQc/    -->
 
   <meta name="framework" content="LetsChat">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8B008B">
+  
+  
 
 </head>
 <body>
@@ -74,5 +79,17 @@
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
   <h6 class="bottom_left">Powered by LetsChat</h6>
 <script src="kwitter.js"></script>
+
+<!-- PWA -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+
 </body>
 </html>
