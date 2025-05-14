@@ -9,7 +9,7 @@ function addUser() {
     }
 }
 
-window.LetsChat = true;
+window.kwitter = true;
 
 // PWA
 if (!navigator.onLine) {
