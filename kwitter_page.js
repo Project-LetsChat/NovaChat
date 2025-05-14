@@ -1,119 +1,132 @@
-const client = new Appwrite.Client();
-client
-    .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('6769c3050016c57dccbf');
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyDCKd9OXejZ-0PK729riphOd6Z1KgrzjCo",
+    authDomain: "letschattestbranch.firebaseapp.com",
+    databaseURL: "https://letschattestbranch-default-rtdb.firebaseio.com/",
+    projectId: "letschattestbranch",
+    storageBucket: "letschattestbranch.appspot.com",
+    messagingSenderId: "1048525961569",
+    appId: "1:1048525961569:web:83583f3ab3a726da266d20"
+};
 
-const databases = new Appwrite.Databases(client);
-const realtime = new Appwrite.Realtime(client);
 
-let unsubscribeMessages;
+firebase.initializeApp(firebaseConfig);
+user_name = localStorage.getItem("user_name");
+room_name = localStorage.getItem("room_name");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const room_name = localStorage.getItem("room_name");
-    if (!room_name) window.location = "kwitter_room.html";
-    
-    getData();
-    setupSendButton();
-});
-
-function setupSendButton() {
-    document.getElementById("sendButton").addEventListener("click", send);
-}
-
-async function send() {
-    const msgInput = document.getElementById("msg");
-    const msg = msgInput.value.trim();
-    if (!msg) return;
-
-    try {
-        await databases.createDocument(
-            'main',
-            'messages', // Your messages collection ID
-            Appwrite.ID.unique(),
-            {
-                room: localStorage.getItem("room_name"),
-                user: localStorage.getItem("user_name"),
-                text: msg,
-                likes: 0,
-                timestamp: new Date().toISOString()
-            }
-        );
-        msgInput.value = "";
-    } catch (error) {
+// Function to send message
+function send() {
+    const msg = document.getElementById("msg").value.trim();
+    if (!msg) {
+      alert("Please enter some text!");
+      return;
+    }
+  
+    const messageData = {
+      name: localStorage.getItem("user_name"),
+      message: msg,
+      like: 0,
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    };
+  
+    // Validate against security rules
+    if (!validateMessage(messageData)) {
+      alert("Invalid message format");
+      return;
+    }
+  
+    firebase.database().ref(room_name).push(messageData)
+      .catch((error) => {
         console.error("Error sending message:", error);
         alert("Error sending message: " + error.message);
-    }
+      });
+  
+    document.getElementById("msg").value = "";
+  }
+  
+// New validation function
+function validateMessage(data) {
+    return data.name && 
+           typeof data.name === 'string' &&
+           data.message &&
+           typeof data.message === 'string' &&
+           typeof data.like === 'number' &&
+           data.name.length < 50 &&
+           data.message.length < 1000;
 }
 
+// Function to sanitize user inputs
+function sanitizeHTML(str) {
+  var temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML;
+}
+
+// Add this NEW function at the top with sanitizeHTML
+function escapeAttr(str) {
+  const temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML
+    .replace(/'/g, '&#39;')
+    .replace(/"/g, '&quot;');
+}
+
+// Function to get data and display messages
 function getData() {
-    // Real-time subscription
-    unsubscribeMessages = realtime.subscribe('databases.main.collections.messages.documents', response => {
-        if (response.events.includes('databases.*.collections.messages.documents.*.create')) {
-            if (response.payload.room === localStorage.getItem("room_name")) {
-                addMessageToUI(response.payload);
-            }
-        }
-    });
+  const messagesRef = firebase.database().ref(room_name);
+  messagesRef.on('value', (snapshot) => {
+    let html = "";
+    snapshot.forEach((childSnapshot) => {
+      const messageData = childSnapshot.val();
+      if (messageData.name && messageData.message) {
+        // Escape all dynamic attributes
+        const safeKey = escapeAttr(childSnapshot.key);
+        const safeLikes = escapeAttr(String(messageData.like || 0));
 
-    // Initial load
-    databases.listDocuments('main', 'messages', [
-        Appwrite.Query.equal('room', localStorage.getItem("room_name"))
-    ])
-    .then(response => {
-        response.documents.forEach(addMessageToUI);
-    })
-    .catch(error => console.error("Error loading messages:", error));
-}
-
-function addMessageToUI(message) {
-    const output = document.getElementById("output");
-    
-    // Check if message already exists
-    if (document.getElementById(message.$id)) return;
-
-    const html = `
-        <div class="message" id="${message.$id}">
-            <h4>${sanitizeHTML(message.user)} 
-                <img class="user_tick" src="tick.png">
+        html += `
+          <div class="message">
+            <h4>${sanitizeHTML(messageData.name)} 
+              <img class="user_tick" src="tick.png">
             </h4>
-            <p class="message_h4">${sanitizeHTML(message.text)}</p>
+            <p class="message_h4">${sanitizeHTML(messageData.message)}</p>
             <button class="btn btn-warning" 
-                    onclick="updateLike('${message.$id}')"
-                    data-likes="${message.likes}">
-                <span class="glyphicon glyphicon-thumbs-up">
-                    Likes: ${message.likes}
-                </span>
+                    id="${safeKey}" 
+                    onclick="updateLike(this.id)"
+                    data-likes="${safeLikes}">
+              <span class="glyphicon glyphicon-thumbs-up">
+                Likes: ${sanitizeHTML(String(messageData.like || 0))}
+              </span>
             </button>
             <hr>
-        </div>`;
-    
-    output.insertAdjacentHTML('beforeend', html);
+          </div>
+        `;
+      }
+    });
+    document.getElementById("output").innerHTML = html;
+  });
 }
 
-async function updateLike(messageId) {
-    try {
-        const message = await databases.getDocument('main', 'messages', messageId);
-        await databases.updateDocument('main', 'messages', messageId, {
-            likes: message.likes + 1
-        });
-    } catch (error) {
-        console.error("Error updating likes:", error);
-    }
+// Call getData to fetch and display messages
+getData();
+
+// Function to update likes
+function updateLike(message_id) {
+    const ref = firebase.database().ref(`${room_name}/${message_id}/like`);
+    ref.transaction((currentLikes) => {
+      return (currentLikes || 0) + 1;
+    }).catch((error) => {
+      console.error("Error updating likes:", error);
+    });
 }
 
+// Function to log out
 function logout() {
-    unsubscribeMessages(); // Cleanup realtime subscription
-    account.deleteSession('current')
-        .finally(() => {
-            localStorage.removeItem("user_name");
-            localStorage.removeItem("room_name");
-            window.location = "index.html";
-        });
+  localStorage.removeItem("user_name");
+  localStorage.removeItem("room_name");
+  window.location.replace("index.html");
 }
 
-// XSS protection
-function sanitizeHTML(str) {
-    const temp = document.createElement('div');
-    temp.textContent = str;
-    return temp.innerHTML;
-}
+// Add click event listener to send button
+document.getElementById("sendButton").addEventListener("click", function() {
+  send();
+});
