@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Array of updates
   const updates = [
-    { title: 'Redesign Phase 4', description: 'The final phase of the redesign is now out.' },
-    { title: 'Upstream compatibility', description: 'The entire instance has been moved to the new directory/file structure introduced in LetsChat 6.1.' },
+    { title: 'PWA', description: 'Support for PWA (Progressive Web App) has been added.' },
+    { title: 'NovaChat Labs', description: 'NovaChat Labs is a new part of NovaChat that will have a lot of experimental features.' },
     
   ];
 
