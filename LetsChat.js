@@ -9,5 +9,10 @@ function addUser() {
     }
 }
 
-window.LetsChat = true;
+window.kwitter = true;
 
+// PWA
+if (!navigator.onLine) {
+    alert('You are offline. Some features may be limited.');
+    // Handle offline state
+  }

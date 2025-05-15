@@ -1,0 +1,17 @@
+{
+  "name": "NovaChat",
+  "short_name": "NovaChat",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#8B008B",
+  "theme_color": "#8B008B",
+  "description": "A progressive web app for secure chatting.",
+  "icons": [
+    {
+      "src": "https://cdn.jim-nielsen.com/ios/512/spike-email-messenger-chat-2019-05-01.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

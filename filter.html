@@ -21,6 +21,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8B008B">
+  
+  
 
 </head>
 <body background="background.jpg">
@@ -52,12 +57,12 @@ Navigation bar code here
 	</div>
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
-			<li><a href="https://project-letschat.github.io/NovaChat/upcoming.html">Upcoming Features</a></li>
 			<li><a href="https://project-letschat.github.io/NovaChat/changelog.html">Changelog</a></li>
-			<li><a href="https://project-letschat.github.io/NovaChat/about.html">About</a></li>
 			<li><a href="https://github.com/Project-LetsChat/LetsChat.git/">LetsChat</a></li>
-            <li><a href="https://project-letschat.github.io/NovaChat/text.html">NText-Editor</a></li>
-            <li><a href="https://project-letschat.github.io/NovaChat/filter.html">New Realtime Filters</a></li>
+      <li><a href="https://project-letschat.github.io/NovaChat/text.html">NText-Editor</a></li>
+      <li><a href="https://project-letschat.github.io/NovaChat/filter.html">New Realtime Filters</a></li>
+      <li><a href="https://project-letschat.github.io/NovaChat/extra.html">Labs</a></li>
+      <li><a href="https://project-letschat.github.io/NovaChat/about.html">About</a></li>
 		</ul>
 	</div>
   </nav>
@@ -68,5 +73,18 @@ Navigation bar code here
         <br>
         <canvas id="myCanvas"></canvas>
     </center>
+    <h6 class="bottom_left">Powered by LetsChat</h6>
+
+    <!-- PWA -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('SW registered:', reg))
+          .catch(err => console.log('SW registration failed:', err));
+      });
+    }
+    </script>
+    
 </body>
 </html>

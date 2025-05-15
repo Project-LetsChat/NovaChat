@@ -12,7 +12,7 @@
     <script src="kwitter_room.js"></script>
     <link rel="stylesheet" href="LetsChat.css">
     <script src="kwitter.js"></script>
-    <title>Whats New!</title>
+    <title>Whats New! | NovaChat</title>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel = "icon" href =  
 "https://cdn.jim-nielsen.com/ios/512/spike-email-messenger-chat-2019-05-01.png" 
@@ -25,6 +25,11 @@
         <script src="settings.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="sjcl.js"></script>
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#8B008B">
+        
+        
 </head>
 <body>
 
@@ -46,7 +51,7 @@ Navigation bar code here
 			
 		</button>
 		<a class="navbar-brand" href="https://project-letschat.github.io/NovaChat/kwitter_room.html">
-			LetsChat
+			NovaChat
 		</a>
 		<!--Menu-->
 		<!--List of Menus
@@ -63,39 +68,53 @@ Navigation bar code here
 	</div>
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
-			<li><a href="https://project-letschat.github.io/NovaChat/upcoming.html">Upcoming Features</a></li>
 			<li><a href="https://project-letschat.github.io/NovaChat/changelog.html">Changelog</a></li>
-			<li><a href="https://project-letschat.github.io/NovaChat/about.html">About</a></li>
 			<li><a href="https://github.com/Project-LetsChat/LetsChat.git/">LetsChat</a></li>
 			<li><a href="https://project-letschat.github.io/NovaChat/text.html">NText-Editor</a></li>
 			<li><a href="https://project-letschat.github.io/NovaChat/filter.html">New Realtime Filters</a></li>
+      <li><a href="https://project-letschat.github.io/NovaChat/extra.html">Labs</a></li>
+      <li><a href="https://project-letschat.github.io/NovaChat/about.html">About</a></li>
 		</ul>
 	</div>
   </nav>
 
     <h1>Whats New/In Development:</h1>
-    <h2>Tutorials</h2>
-    <h3>A Tutorials page has been added to the Navigation bar, it currently only contains 1 Video explaining the Basics on how to use LetsChat but it is getting extended with more content</h3>
+    <h2>PWA</h2>
+    <h3>Support for PWA (Progressive Web App) has been added.</h3>
+    <h2>Labs</h2>
+    <h3>NovaChat Labs is a new part of NovaChat that will have a lot of experimental features.</h3>
     
-    <h1>Upcoming:</h1>
+    <!--<h1>Upcoming:</h1>
     
     <h2>More Apps/Games</h2>
       <h3>More Apps and Games in the External Services tab.</h3>
     <h2>Image Recognition System</h2>
-    <h3>A camera pops up and you show a object on the camera, it will recognise the object.</h3>
+    <h3>A camera pops up and you show a object on the camera, it will recognise the object.</h3>-->
 
-    <h4><a href="https://github.com/Project-LetsChat/LetsChat.wiki.git/">Wiki</a></h4>
-    <h4><a href="https://github.com/Project-LetsChat/LetsChat.git/"><Code>Source Code</Code></a></h4>
+    <h4><a href="https://github.com/Project-LetsChat/LetsChat/wiki/">LetsChat Wiki</a></h4>
+    <h4><a href="https://github.com/Project-LetsChat/LetsChat.git/"><Code>LetsChat Source Code</Code></a></h4>
     <!--<h4><a href="git@github.com:Project-LetsChat/LetsChat.git">SSH</a></h4>-->
-    <h4>Get a local copy of the source code using Git CLI: git clone https://github.com/Project-LetsChat/LetsChat.git/</h4>
+    <h4>Get a local copy of the LetsChat source code using the Git CLI: <code>git clone https://github.com/Project-LetsChat/LetsChat.git/</code></h4>
 
     <!--<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
   intent="WELCOME"
   chat-title="LetsBotBETA"
-  agent-id="a675261e-35c6-461a-b128-f5901ec8924d"
+  agent-id=""
   language-code="en"
 ></df-messenger>-->
+
+<!-- PWA -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registered:', reg))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+  </script>
+  
 
 </body>
 

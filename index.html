@@ -16,27 +16,33 @@
   <script src="ip_address.js"></script>
   <script src="kwitter_page.js"></script>
   <script src="kwitter_room.js"></script>
-  <script src="kwitter.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database-compat.js"></script>
   <link rel = "icon" href =  
 "https://cdn.jim-nielsen.com/ios/512/spike-email-messenger-chat-2019-05-01.png" 
         type = "image/x-icon">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
-<!-- In all HTML files, replace Firebase includes with: -->
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database-compat.js"></script>
+<!-- In the head section -->
+<script src="https://cdn.jsdelivr.net/npm/appwrite@10.0.0"></script>
 <script src="settings.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="sjcl.js"></script>
   <!--https://teachablemachine.withgoogle.com/models/MKKXoCdQc/    -->
 
   <meta name="framework" content="LetsChat">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8B008B">
+  
+  
 
 </head>
 <body>
   <!-- New Login Form -->
+  
   <div class="login-container">
-    <form class="form" onsubmit="event.preventDefault(); addUser();">
+    <form class="form" onsubmit="return addUser();"> <!-- Added return -->
       <p id="heading">Welcome to NovaChat</p>
       <div class="field">
         <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -61,11 +67,29 @@
       <div class="btn">
         <button type="submit" class="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
       </div>
+      <div class="gnu">
+        <p><a href="http://www.gnu.org/" title=
+        "The GNU Project"><img alt="GNU" src="heckert_gnu.png" width=
+        "129" height="122" /></a></p>
+      </div>
     </form>
   </div>
 
   <!-- Keep existing scripts and footer -->
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
   <h6 class="bottom_left">Powered by LetsChat</h6>
+<script src="kwitter.js"></script>
+
+<!-- PWA -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+
 </body>
 </html>
